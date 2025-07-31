@@ -1,0 +1,34 @@
+a{
+    color: royalblue;
+    text-decoration: none;
+    list-style: square;
+}
+a:hover{
+    text-decoration: underline;
+    color: #f40e53;
+}
+
+.dashboard{
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    height: 300px;
+    text-align: left;
+    margin: auto;
+    width: 500px;
+    
+}
+body{
+    font-family: Arial,Sans-serif;
+    background-color: lightgray;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 10px;
+    margin: 100px;
+}
+
+p{
+    text-align: center;
+}

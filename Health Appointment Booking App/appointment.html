@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Book Appointment </title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+
+
+    <form onsubmit="handleSubmit(event)">
+
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <p>
+                    Your appointment has been successfully!
+                </p>
+                <button onclick="closeModal()"> Ok </button><br><br>
+                <button onclick="closeModal()"> Cancel</button>
+                </div>
+                </div>
+
+
+        <h2> Book an Appointment </h2>
+
+        <label for="name"> Full Name </label>
+        <input type="text" id="name" required><br>
+
+        <label for="email"> Enter Your E-mail Address</label>
+        <input type="email" id="email" required><br>
+
+        <label for="date">Appointment Date </label>
+        <input type="date" id="date" required><br>
+
+        <label for="time"> Appointment Time </label>
+        <input type="time" id="time" required><br>
+
+        <label for="department"> Department</label>
+        <select id="department" onchange="showOtherField()" required>
+            <option value=""> Select</option>
+            <option value="General"> General Medicine </option>
+            <option value="pediatrics"> Pediatrics</option>
+            <option value="Dental"> Dental</option>
+            <option value="other"> other</option>
+        </select>
+
+            <div id="otherDeptField" style="display: none; margin-top: 10px;">
+                <label for="otherDepartment"> Please specify: </label>
+                <input type="text" id="otherDepartment"> 
+
+            </div><br><br>
+
+            <label for="message"> Reason for visit </label>
+            <textarea id="message" rows="4"></textarea>
+
+            <button type="submit"> Submit </button>
+    </form>
+
+
+    <script>
+function showOtherField() {
+    const deptSelect = document.getElementById("department");
+    const otherField = document.getElementById("otherDeptField");
+
+    if( deptSelect.value === "other") {
+        otherField.style.display = "block";
+
+    } else{
+        otherField.style.display = "none";
+    }
+ }
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById("name").value.trim();
+
+    const email = document.getElementById("email").value.trim();
+
+    const date = document.getElementById("date").value;
+
+    const time = document.getElementById("time").value;
+
+    const dept = document.getElementById("department").value;
+
+    document.getElementById("confirmationModal").style.display = "flex";
+
+    if (!name || !email || !date || !time || !dept) {
+        alert("Please fill in all fields");
+        return;
+    }
+        if (dept === "other") {
+            const otherDept = document.getElementById("otherDepartment").value.trim();
+            if(!otherDept) {
+                alert("please specify the Department.");
+                return;
+            }
+        }
+    
+    document.querySelector("form").reset();
+
+    document.getElementById("otherDeptField").style.display = "none";
+}
+
+
+function closeModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+}
+
+    </script>
+</body>
+</html>
